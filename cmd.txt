@@ -1,0 +1,12 @@
+# to show everything
+arecord
+
+# cd is predefined format = 44.1khz, 16bit 
+arecord -f cd -d 10 recording.wav
+
+# parameters
+# -f S32_LE, S24_3LE, S16_LE can work, but S24_LE doesn't work
+# -r sample rate, e.g. 192000, 44100, 48000
+# -c number of channels, default = 2
+# -d duration in seconds 
+arecord -f S32_LE -r 192000 -c 2 -d 10 hq.wav
