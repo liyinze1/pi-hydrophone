@@ -2,7 +2,7 @@ import subprocess
 import numpy as np
 import matplotlib.pyplot as plt
 
-RATE = 44100
+RATE = 16000
 CHANNELS = 2
 FORMAT = 'S16_LE'
 CHUNK = RATE // 2  # read 0.1 second per read
