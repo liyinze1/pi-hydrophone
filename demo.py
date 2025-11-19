@@ -36,7 +36,7 @@ while True:
     ax_wl.set_title('Left Waveform (1 sec)')
 
     ax_wr.clear()
-    ax_wr.plot(right)
+    ax_wr.plot(right, color='orange')
     ax_wr.set_title('Right Waveform (1 sec)')
 
     # --- FFTs ---
@@ -46,7 +46,7 @@ while True:
     ax_fl.set_title('Left FFT')
 
     ax_fr.clear()
-    ax_fr.plot(freqs, np.abs(np.fft.rfft(right)))
+    ax_fr.plot(freqs, np.abs(np.fft.rfft(right)), color='orange')
     ax_fr.set_title('Right FFT')
 
     plt.pause(0.1)
