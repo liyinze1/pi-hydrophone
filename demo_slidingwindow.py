@@ -6,7 +6,7 @@ RATE = 44100
 CHANNELS = 2
 FORMAT = 'S16_LE'
 CHUNK = RATE // 2  # read 0.1 second per read
-WINDOW_SEC = 5
+WINDOW_SEC = 2
 WINDOW_SIZE = RATE * WINDOW_SEC
 
 # Rolling buffers (no deque)
