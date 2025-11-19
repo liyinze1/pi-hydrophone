@@ -47,8 +47,8 @@ while True:
     ax_fl.set_title('Left FFT')
 
     ax_fr.clear()
-    ax_fr.plot(freqs, np.abs(np.fft.rfft(right)), color='orange')
-    ax_fr.set_xlim(0, 5)
+    ax_fr.semilogx(freqs, np.abs(np.fft.rfft(right)), color='orange')
+    ax_fr.set_xlim(1e-10, 200)
     ax_fr.set_title('Right FFT')
 
     plt.pause(0.1)
