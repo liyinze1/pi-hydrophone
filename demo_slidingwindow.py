@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 RATE = 44100
 CHANNELS = 2
 FORMAT = 'S16_LE'
-CHUNK = RATE // 10  # read 0.1 second per read
+CHUNK = RATE // 5  # read 0.1 second per read
 WINDOW_SEC = 1
 WINDOW_SIZE = RATE * WINDOW_SEC
 
@@ -28,7 +28,7 @@ process = subprocess.Popen(
 )
 
 plt.ion()
-fig, axs = plt.subplots(2, 2, figsize=(10, 6))
+fig, axs = plt.subplots(2, 2, figsize=(15, 8))
 (ax_wl, ax_wr), (ax_fl, ax_fr) = axs
 
 while True:
