@@ -68,6 +68,7 @@ while True:
     ax_wr.clear()
     ax_wr.plot(buf_right)
     ax_wr.set_title('Right Waveform (last 1 sec)')
+    ax_wl.set_ylim(-100, 100)
 
     # --- FFTs ---
     freqs = np.fft.rfftfreq(WINDOW_SIZE, 1 / RATE)
@@ -82,6 +83,7 @@ while True:
     ax_fr.clear()
     ax_fr.plot(freqs, np.abs(fft_right))
     ax_fr.set_title('Right FFT (last 1 sec)')
+    ax_fl.set_ylim(0, 100000)
 
     # plt.tight_layout()
     plt.pause(0.1)
