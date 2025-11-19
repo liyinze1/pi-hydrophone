@@ -66,7 +66,7 @@ while True:
 
 
     ax_wr.clear()
-    ax_wr.plot(buf_right)
+    ax_wr.plot(buf_right, color='orange')
     ax_wr.set_title('Right Waveform (last %d sec)'%WINDOW_SEC)
     ax_wr.set_ylim(-100, 100)
 
@@ -81,7 +81,7 @@ while True:
     ax_fl.set_ylim(0, 100000)
 
     ax_fr.clear()
-    ax_fr.plot(freqs, np.abs(fft_right))
+    ax_fr.plot(freqs, np.abs(fft_right), color='orange')
     ax_fr.set_title('Right FFT (last %d sec)'%WINDOW_SEC)
     ax_fr.set_ylim(0, 10000)
 
