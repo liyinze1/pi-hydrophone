@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 RATE = 44100
 CHANNELS = 2
 FORMAT = 'S16_LE'
-CHUNK = RATE // 5  # read exactly 1 second per read
+CHUNK = RATE
 
 process = subprocess.Popen(
     ['arecord', '-f', FORMAT, '-r', str(RATE), '-c', str(CHANNELS), '-q', '-'],
