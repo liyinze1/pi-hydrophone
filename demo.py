@@ -58,8 +58,8 @@ while True:
     right_1s = np.array(buf_right, dtype=np.float32)
 
     # --- Loudness Normalize ---
-    left_norm = rms_normalize(left_1s, TARGET_RMS)
-    right_norm = rms_normalize(right_1s, TARGET_RMS)
+    # left_norm = rms_normalize(left_1s, TARGET_RMS)
+    # right_norm = rms_normalize(right_1s, TARGET_RMS)
 
     # Clip back to safe range for plotting
     left_norm = np.clip(left_norm, -1.0, 1.0)
