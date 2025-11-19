@@ -14,7 +14,7 @@ process = subprocess.Popen(
 )
 
 plt.ion()
-fig, axs = plt.subplots(2,2, figsize=(10,6))
+fig, axs = plt.subplots(2,2, figsize=(20, 12))
 (ax_wl, ax_wr), (ax_fl, ax_fr) = axs
 
 while True:
