@@ -54,8 +54,8 @@ while True:
     # =====================================
 
     # Skip drawing until we have 1 second filled
-    if np.any(buf_left == 0):
-        continue
+    # if np.any(buf_left == 0):
+    #     continue
 
     print("Updating plots...")
     # --- Waveforms ---
