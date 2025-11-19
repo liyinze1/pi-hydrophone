@@ -32,16 +32,19 @@ fig, axs = plt.subplots(2, 2, figsize=(10, 6))
 (ax_wl, ax_wr), (ax_fl, ax_fr) = axs
 
 while True:
+    print("Reading audio data...")
     raw = process.stdout.read(CHUNK * CHANNELS * 2)
     if not raw:
         break
 
+    print("Processing audio data...")
     data = np.frombuffer(raw, dtype=np.int16).reshape(-1, CHANNELS).astype(np.float32)
     left = data[:, 0]
     right = data[:, 1]
 
     L = len(left)
 
+    print("Rolling window...")
     # === Update rolling 1-second buffer ===
     buf_left = np.roll(buf_left, -L)
     buf_right = np.roll(buf_right, -L)
@@ -54,6 +57,7 @@ while True:
     if np.any(buf_left == 0):
         continue
 
+    print("Updating plots...")
     # --- Waveforms ---
     ax_wl.clear()
     ax_wl.plot(buf_left)
@@ -80,4 +84,4 @@ while True:
     ax_fr.set_title('Right FFT (last 1 sec)')
 
     plt.tight_layout()
-    plt.pause(0.001)
+    plt.pause(0.01)
