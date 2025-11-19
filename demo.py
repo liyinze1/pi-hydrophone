@@ -17,7 +17,7 @@ plt.ion()
 fig, axs = plt.subplots(2,2, figsize=(20, 12))
 (ax_wl, ax_wr), (ax_fl, ax_fr) = axs
 
-ax_wl.set_ylime(-1000, 1000)
+ax_wl.set_ylim(-1000, 1000)
 
 while True:
     
