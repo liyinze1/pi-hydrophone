@@ -61,13 +61,13 @@ while True:
     # --- Waveforms ---
     ax_wl.clear()
     ax_wl.plot(buf_left)
-    ax_wl.set_title('Left Waveform (last 1 sec)')
+    ax_wl.set_title('Left Waveform (last %d sec)'%WINDOW_SEC)
     ax_wl.set_ylim(-1000, 1000)
 
 
     ax_wr.clear()
     ax_wr.plot(buf_right)
-    ax_wr.set_title('Right Waveform (last 1 sec)')
+    ax_wr.set_title('Right Waveform (last %d sec)'%WINDOW_SEC)
     ax_wr.set_ylim(-100, 100)
 
     # --- FFTs ---
@@ -77,13 +77,13 @@ while True:
 
     ax_fl.clear()
     ax_fl.plot(freqs, np.abs(fft_left))
-    ax_fl.set_title('Left FFT (last 1 sec)')
+    ax_fl.set_title('Left FFT (last %d sec)'%WINDOW_SEC)
     ax_fl.set_ylim(0, 100000)
 
     ax_fr.clear()
     ax_fr.plot(freqs, np.abs(fft_right))
-    ax_fr.set_title('Right FFT (last 1 sec)')
-    ax_fr.set_ylim(0, 100000)
+    ax_fr.set_title('Right FFT (last %d sec)'%WINDOW_SEC)
+    ax_fr.set_ylim(0, 10000)
 
     # plt.tight_layout()
     plt.pause(0.1)
