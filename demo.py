@@ -44,11 +44,12 @@ while True:
     freqs = np.fft.rfftfreq(len(left), 1/RATE)
     ax_fl.clear()
     ax_fl.semilogx(freqs, np.abs(np.fft.rfft(left)))
+    ax_fl.set_ylim(0, 100000)
     ax_fl.set_title('Left FFT')
 
     ax_fr.clear()
     ax_fr.semilogx(freqs, np.abs(np.fft.rfft(right)), color='orange')
-    ax_fr.set_xlim(1e-10, 200)
+    ax_fr.set_xlim(1e-3, 20000)
     ax_fr.set_title('Right FFT')
 
     plt.pause(0.1)
