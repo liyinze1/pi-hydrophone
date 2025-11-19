@@ -83,5 +83,5 @@ while True:
     ax_fr.plot(freqs, np.abs(fft_right))
     ax_fr.set_title('Right FFT (last 1 sec)')
 
-    plt.tight_layout()
-    plt.pause(0.01)
+    # plt.tight_layout()
+    # plt.pause(0.01)
