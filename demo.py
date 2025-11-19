@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 RATE = 44100
 CHANNELS = 2
 FORMAT = 'S16_LE'
-CHUNK = RATE   # read exactly 1 second per read
+CHUNK = RATE * 0.5   # read exactly 1 second per read
 
 process = subprocess.Popen(
     ['arecord', '-f', FORMAT, '-r', str(RATE), '-c', str(CHANNELS), '-q', '-'],
@@ -16,8 +16,6 @@ process = subprocess.Popen(
 plt.ion()
 fig, axs = plt.subplots(2,2, figsize=(20, 12))
 (ax_wl, ax_wr), (ax_fl, ax_fr) = axs
-
-ax_wl.set_ylim(-1000, 1000)
 
 while True:
     
@@ -36,6 +34,7 @@ while True:
     ax_wl.clear()
     ax_wl.plot(left)
     ax_wl.set_title('Left Waveform (1 sec)')
+    ax_wl.set_ylim(-1000, 1000)
 
     ax_wr.clear()
     ax_wr.plot(right, color='orange')
