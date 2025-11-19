@@ -18,14 +18,18 @@ fig, axs = plt.subplots(2,2, figsize=(10,6))
 (ax_wl, ax_wr), (ax_fl, ax_fr) = axs
 
 while True:
+    
+    print("Reading audio data...")
     raw = process.stdout.read(CHUNK * CHANNELS * 2)
     if not raw:
         break
-
+    
+    print("Processing audio data...")
     data = np.frombuffer(raw, dtype=np.int16).reshape(-1, CHANNELS)
     left = data[:, 0]
     right = data[:, 1]
-
+    
+    print("Updating plots...")
     # --- Waveforms ---
     ax_wl.clear()
     ax_wl.plot(left)
@@ -45,4 +49,4 @@ while True:
     ax_fr.plot(freqs, np.abs(np.fft.rfft(right)))
     ax_fr.set_title('Right FFT')
 
-    plt.pause(0.001)
+    plt.pause(0.1)
