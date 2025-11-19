@@ -43,11 +43,11 @@ while True:
     # --- FFTs ---
     freqs = np.fft.rfftfreq(len(left), 1/RATE)
     ax_fl.clear()
-    ax_fl.plot(freqs, np.abs(np.fft.rfft(left)))
+    ax_fl.semilogx(freqs, np.abs(np.fft.rfft(left)))
     ax_fl.set_title('Left FFT')
 
     ax_fr.clear()
-    ax_fr.plot(freqs, np.abs(np.fft.rfft(right)), color='orange')
+    ax_fr.semilogx(freqs, np.abs(np.fft.rfft(right)), color='orange')
     ax_fr.set_title('Right FFT')
 
     plt.pause(0.1)
