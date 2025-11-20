@@ -74,4 +74,4 @@ while True:
     ax_fft.set_title(f'Hydrophone FFT (last {WINDOW_SEC} sec)')
     ax_fft.set_ylim(0, 100000)
 
-    plt.pause(0.1)
+    plt.pause(0.05)
