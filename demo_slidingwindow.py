@@ -6,7 +6,7 @@ import matplotlib.gridspec as gridspec
 RATE = 16000
 CHANNELS = 2
 FORMAT = 'S16_LE'
-CHUNK = RATE // 5
+CHUNK = RATE // 4
 WINDOW_SEC = 2
 WINDOW_SIZE = RATE * WINDOW_SEC
 
@@ -74,4 +74,4 @@ while True:
     ax_fft.set_title(f'Hydrophone FFT (last {WINDOW_SEC} sec)')
     ax_fft.set_ylim(0, 100000)
 
-    plt.pause(0.05)
+    plt.pause(0.1)
