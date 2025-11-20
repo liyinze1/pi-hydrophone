@@ -1,6 +1,7 @@
 import subprocess
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 
 RATE = 16000
 CHANNELS = 2
@@ -21,9 +22,15 @@ process = subprocess.Popen(
 )
 
 plt.ion()
-# 2 rows × 2 columns, but bottom-right panel unused
-fig, axs = plt.subplots(2, 2, figsize=(15, 8))
-(ax_wl, ax_wr), (ax_fl, ax_unused) = axs  # ax_unused will not be used
+
+# ----- GRID: First row has 2 columns, second row only one full-width plot -----
+fig = plt.figure(figsize=(15, 8))
+gs = gridspec.GridSpec(2, 2, height_ratios=[1, 1])
+
+ax_wl = fig.add_subplot(gs[0, 0])       # row 0, col 0
+ax_wr = fig.add_subplot(gs[0, 1])       # row 0, col 1
+ax_fft = fig.add_subplot(gs[1, :])      # row 1, spanning both columns
+# -----------------------------------------------------------------------------
 
 while True:
     print("Reading audio data...")
@@ -47,28 +54,24 @@ while True:
 
     print("Updating plots...")
 
-    # --- Waveforms ---
+    # --- Waveforms (top row) ---
     ax_wl.clear()
     ax_wl.plot(buf_left)
     ax_wl.set_title(f'Left Waveform (last {WINDOW_SEC} sec)')
-    ax_wl.set_ylim(-1000, 1000)
+    ax_wl.set_ylim(-2000, 2000)
 
     ax_wr.clear()
     ax_wr.plot(buf_right, color='orange')
     ax_wr.set_title(f'Right Waveform (last {WINDOW_SEC} sec)')
-    ax_wr.set_ylim(-1000, 1000)
+    ax_wr.set_ylim(-2000, 2000)
 
-    # --- Left FFT Only ---
+    # --- FFT spanning entire bottom row ---
     freqs = np.fft.rfftfreq(WINDOW_SIZE, 1 / RATE)
     fft_left = np.fft.rfft(buf_left)
 
-    ax_fl.clear()
-    ax_fl.plot(freqs, np.abs(fft_left))
-    ax_fl.set_title(f'Left FFT (last {WINDOW_SEC} sec)')
-    ax_fl.set_ylim(0, 100000)
-
-    # clear and hide the unused subplot
-    ax_unused.clear()
-    ax_unused.axis('off')
+    ax_fft.clear()
+    ax_fft.plot(freqs, np.abs(fft_left))
+    ax_fft.set_title(f'Left FFT (last {WINDOW_SEC} sec)')
+    ax_fft.set_ylim(0, 100000)
 
     plt.pause(0.1)
