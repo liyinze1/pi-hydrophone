@@ -62,7 +62,7 @@ while True:
 
     ax_wr.clear()
     ax_wr.plot(buf_right, color='orange')
-    ax_wr.set_title(f'Pluse (last {WINDOW_SEC} sec)')
+    ax_wr.set_title(f'Pulse (last {WINDOW_SEC} sec)')
     ax_wr.set_ylim(-200, 200)
 
     # --- FFT spanning entire bottom row ---
