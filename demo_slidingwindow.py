@@ -2,6 +2,7 @@ import subprocess
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
+import pyfftw
 
 RATE = 16000
 CHANNELS = 2
@@ -67,7 +68,8 @@ while True:
 
     # --- FFT spanning entire bottom row ---
     freqs = np.fft.rfftfreq(WINDOW_SIZE, 1 / RATE)
-    fft_left = np.fft.rfft(buf_left)
+    # fft_left = np.fft.rfft(buf_left)
+    fft_left = pyfftw.interfaces.numpy_fft.rfft(buf_left)
 
     ax_fft.clear()
     ax_fft.plot(freqs, np.abs(fft_left))
