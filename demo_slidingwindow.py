@@ -6,7 +6,7 @@ import matplotlib.gridspec as gridspec
 RATE = 16000
 CHANNELS = 2
 FORMAT = 'S16_LE'
-CHUNK = RATE // 4  # read 0.5 second per read
+CHUNK = RATE // 10  # read 0.5 second per read
 WINDOW_SEC = 2
 WINDOW_SIZE = RATE * WINDOW_SEC
 
@@ -63,7 +63,7 @@ while True:
     ax_wr.clear()
     ax_wr.plot(buf_right, color='orange')
     ax_wr.set_title(f'Pluse (last {WINDOW_SEC} sec)')
-    ax_wr.set_ylim(-500, 500)
+    ax_wr.set_ylim(-200, 200)
 
     # --- FFT spanning entire bottom row ---
     freqs = np.fft.rfftfreq(WINDOW_SIZE, 1 / RATE)
@@ -74,4 +74,4 @@ while True:
     ax_fft.set_title(f'Hydrophone FFT (last {WINDOW_SEC} sec)')
     ax_fft.set_ylim(0, 100000)
 
-    plt.pause(0.1)
+    plt.pause(0.01)
