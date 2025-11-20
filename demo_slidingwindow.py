@@ -6,7 +6,7 @@ import matplotlib.gridspec as gridspec
 RATE = 16000
 CHANNELS = 2
 FORMAT = 'S16_LE'
-CHUNK = RATE // 4
+CHUNK = RATE // 2
 WINDOW_SEC = 2
 WINDOW_SIZE = RATE * WINDOW_SEC
 
