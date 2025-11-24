@@ -63,7 +63,7 @@ while True:
 
     ax_wr.clear()
     ax_wr.plot(buf_right, color='orange')
-    ax_wr.set_title(f'Pulse (last {WINDOW_SEC} sec)')
+    ax_wr.set_title(f'Time Pulse (last {WINDOW_SEC} sec)')
     ax_wr.set_ylim(-200, 200)
 
     # --- FFT spanning entire bottom row ---
@@ -73,7 +73,7 @@ while True:
 
     ax_fft.clear()
     ax_fft.plot(freqs, np.abs(fft_left))
-    ax_fft.set_title(f'Hydrophone FFT (last {WINDOW_SEC} sec)')
+    ax_fft.set_title(f'Frequency Analysis (FFT) (last {WINDOW_SEC} sec)')
     ax_fft.set_ylim(0, 100000)
 
     plt.pause(0.1)
