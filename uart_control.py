@@ -5,7 +5,7 @@ import struct
 # Configuration
 SERIAL_PORT = '/dev/ttyAMA0'
 BAUD_RATE = 115200
-record_cmd = 'arecord -f S32_LE -r 192000 -c 2 -d 20'
+record_cmd = 'arecord -D plughw:CARD=sndrpihifiberry,DEV=0 -r 192000 -c 2 -f S32_LE -d 5'
 
 class UART_control:
     def __init__(self):
