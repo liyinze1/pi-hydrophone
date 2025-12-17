@@ -3,7 +3,7 @@ import serial
 import struct
 
 # Configuration
-SERIAL_PORT = '/dev/ttyACM0'
+SERIAL_PORT = '/dev/ttyAMA0'
 BAUD_RATE = 230400
 record_cmd = 'arecord -f S32_LE -r 192000 -c 2 -d 20'
 
