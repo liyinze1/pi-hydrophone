@@ -1,6 +1,7 @@
 import os
 import serial
 import struct
+import subprocess
 
 # Configuration
 SERIAL_PORT = '/dev/ttyAMA0'
@@ -12,6 +13,7 @@ class UART_control:
         self.initial_process = None
         self.record_process = None
         self.last_ts = None
+        self.record_thread = None
 
     def main(self):
         ser = serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE)
@@ -38,9 +40,11 @@ class UART_control:
                 self.record(node, ms)
     
     def record(self, node, ms):
+        if self.record_thread is not None and self.record_thread.poll() is None:
+            return
         cmd = record_cmd + ' ' + str(node) + '-' + str(ms) + '.wav'
-        os.system(cmd)
-        print('finish cmd:', cmd)
+        print(cmd)
+        self.record_thread = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
 
 if __name__ == '__main__':
     uart_control = UART_control()
