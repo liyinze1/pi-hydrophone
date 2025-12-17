@@ -37,6 +37,21 @@ class UART_control:
                 self.start(ts)
             elif c == b'e':
                 self.end()
+                
+    def test_main(self):
+        while True:
+            c = input('input i, s, or e')
+            if not c:
+                continue
+
+            if c == 'i':
+                self.initial()
+            elif c == 's':
+                ts = input('input timestamp')
+                self.last_ts = ts
+                self.start(ts)
+            elif c == 'e':
+                self.end()
 
     def _is_running(self, proc):
         return proc is not None and proc.poll() is None
