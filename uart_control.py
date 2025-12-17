@@ -40,10 +40,10 @@ class UART_control:
                 
     def test_main(self):
         while True:
-            c = input('input i, s, or e')
+            c = input('input i, s, or e:')
             if not c:
                 continue
-
+            print('the input is', c)
             if c == 'i':
                 self.initial()
             elif c == 's':
