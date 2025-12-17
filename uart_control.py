@@ -22,7 +22,7 @@ class UART_control:
             b = ser.read(1)
             if not b:
                 continue
-            if b != b's':
+            if b != b'|':
                 continue
             nid = ser.read(1)
             data = ser.read(4)
