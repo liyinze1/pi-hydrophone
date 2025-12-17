@@ -23,6 +23,7 @@ class UART_control:
                 continue
             if b != b's':
                 continue
+            print('pulse')
             nid = ser.read(1)
             data = ser.read(4)
             if len(nid) != 1 or len(data) != 4:
