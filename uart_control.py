@@ -28,11 +28,19 @@ class UART_control:
             node_id = nid[0]
             utc_ms = struct.unpack("<I", data)[0]
             self.record(node_id, utc_ms)
+            
+    def test_main(self):
+        while True:
+            b = input('input cmd:')
+            if b == 's':
+                node = input('input node id:')
+                ms = input('input ms:')
+                self.record(node, ms)
     
     def record(self, node, ms):
         cmd = record_cmd + ' ' + str(node) + '-' + str(ms) + '.wav'
         os.system(cmd)
-        print('finish')
+        print('finish cmd:', cmd)
 
 if __name__ == '__main__':
     uart_control = UART_control()
