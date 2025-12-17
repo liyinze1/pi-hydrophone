@@ -1,4 +1,3 @@
-import os
 import serial
 import struct
 import subprocess
@@ -14,6 +13,8 @@ class UART_control:
         self.record_process = None
         self.last_ts = None
         self.record_thread = None
+        self.audio_file_name = None
+        self.log_file_name = None
 
     def main(self):
         ser = serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE)
@@ -23,7 +24,6 @@ class UART_control:
                 continue
             if b != b's':
                 continue
-            print('pulse')
             nid = ser.read(1)
             data = ser.read(4)
             if len(nid) != 1 or len(data) != 4:
@@ -40,13 +40,18 @@ class UART_control:
                 ms = input('input ms:')
                 self.record(node, ms)
     
+    def log(self, node, ms):
+        with open(self.log_file_name, 'a') as f:
+            f.write(str(node) + '-' + str(ms) + '\n')
+
     def record(self, node, ms):
         if self.record_thread is not None and self.record_thread.poll() is None:
-            return
+            self.log(node, ms)
         cmd = record_cmd + ' ' + str(node) + '-' + str(ms) + '.wav'
-        print(cmd)
+        print('start' + cmd)
+        self.log_file_name = str(node) + '-' + str(ms) + '.txt'
         self.record_thread = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
-
+        
 if __name__ == '__main__':
     uart_control = UART_control()
     uart_control.main()
