@@ -16,7 +16,6 @@ record_cmd = 'ros2 bag record --topics /audio'
 
 class UART_control:
     def __init__(self):
-        self.ser = serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE, timeout=1)
         self.initial_process = None
         self.record_process = None
         self.last_ts = None
@@ -24,6 +23,7 @@ class UART_control:
         os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     def main(self):
+        self.ser = serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE, timeout=1)
         while True:
             c = self.ser.read(1)
             if not c:
