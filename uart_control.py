@@ -20,7 +20,6 @@ class UART_control:
         ser = serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE)
         while True:
             b = ser.read(1)
-            print(b)
             if not b:
                 continue
             if b != b's':
@@ -48,6 +47,7 @@ class UART_control:
     def record(self, node, ms):
         if self.record_thread is not None and self.record_thread.poll() is None:
             self.log(node, ms)
+            return
         cmd = record_cmd + ' ' + str(node) + '-' + str(ms) + '.wav'
         print('start' + cmd)
         self.log_file_name = str(node) + '-' + str(ms) + '.txt'
