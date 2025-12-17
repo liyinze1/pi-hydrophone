@@ -20,6 +20,7 @@ class UART_control:
         ser = serial.Serial(port=SERIAL_PORT, baudrate=BAUD_RATE)
         while True:
             b = ser.read(1)
+            print(b)
             if not b:
                 continue
             if b != b's':
