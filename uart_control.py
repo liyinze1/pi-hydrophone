@@ -5,7 +5,7 @@ import subprocess
 # Configuration
 SERIAL_PORT = '/dev/ttyAMA0'
 BAUD_RATE = 115200
-record_cmd = 'arecord -D plughw:CARD=sndrpihifiberry,DEV=0 -r 192000 -c 2 -f S32_LE -d 10'
+record_cmd = 'arecord -D plughw:CARD=sndrpihifiberry,DEV=0 -r 192000 -c 2 -f S32_LE -d 30'
 
 class UART_control:
     def __init__(self):
